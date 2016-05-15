@@ -11,7 +11,7 @@ Bundle 'taglist.vim'
 Bundle 'THe-NERD-tree'
 Bundle 'a.vim'
 Bundle 'wincent/command-t'
-Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'Lokaltog/vim-powerline'
 
 "Brief help of vundle
 	"BundleList
