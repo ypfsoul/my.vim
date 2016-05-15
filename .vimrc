@@ -10,8 +10,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'taglist.vim'
 Bundle 'THe-NERD-tree'
 Bundle 'a.vim'
-Bundle 'command-t'
-Bundle 'vim-powerline'
+Bundle 'wincent/command-t'
+Bundle 'Lokaltog/vim-powerline.git'
 
 "Brief help of vundle
 	"BundleList
