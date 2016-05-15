@@ -20,9 +20,6 @@ Configuration of ypf's vim
 
     项目托管在github上 https://github.com/gmarik/vundle
     其特色在于使用git来管理插件,更新方便，支持搜索，一键更新，从此只需要一个.vimrc走天下.
-
-* **安装与配置**
-
     使用git命令
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
