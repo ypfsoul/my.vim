@@ -31,7 +31,7 @@ Configuration of ypf's vim
     .vimrc是vim的配置文件，包括所有的插件配置和vim基础属性配置。
 
 * **.vimrc配置简介**
-```python
+```vim
 " vundle {
 set rtp+=~/.vim/bundle/vundle/
 " 如果在windows下使用的话，设置为
