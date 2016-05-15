@@ -3,7 +3,7 @@ filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
-"Let vundle manage bundle, required
+"Let vundle manage vundle, required
 Bundle 'gmarik/vundle'
 "My bundles here:
 Bundle 'altercation/vim-colors-solarized'
