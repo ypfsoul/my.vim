@@ -88,6 +88,6 @@ Bundle 'snipMate'
 ```
 
 ——————
-    *Let's enjoy vim! :smiley:
+    Let's enjoy vim! :smiley:
 ——————
      
