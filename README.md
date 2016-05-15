@@ -23,7 +23,8 @@ Configuration of ypf's vim
 
 * **安装与配置**
 
-    使用git命令: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    使用git命令
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 
 ###Vimrc
