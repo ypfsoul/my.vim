@@ -25,7 +25,8 @@ Configuration of ypf's vim
 
 ####Vimrc
 
-    .vimrc是vim的配置文件，包括所有的插件配置和vim基础属性配置。
+    .vimrc是vim的配置文件，涵盖所有的插件配置和vim基础属性配置。
+    位置在~/.vimrc
 
 * **.vimrc配置简介**
 ```vim
