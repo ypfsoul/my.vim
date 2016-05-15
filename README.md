@@ -16,21 +16,21 @@ Configuration of ypf's vim
     vundle是一款插件管理工具，可以很轻松帮助vim扩展或者删除插件。
 
 
-#Vundle
+###Vundle
 
     项目托管在github上 https://github.com/gmarik/vundle
     其特色在于使用git来管理插件,更新方便，支持搜索，一键更新，从此只需要一个.vimrc走天下.
 
-    * 安装与配置
+    ####安装与配置
     使用git命令
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     
 
-#Vimrc
+###Vimrc
 
     .vimrc是vim的配置文件，包括所有的插件配置和vim基础属性配置。
 
-    * .vimrc配置简介
+    ####.vimrc配置简介
 ```Bash
 " vundle {
 set rtp+=~/.vim/bundle/vundle/
@@ -90,3 +90,4 @@ Bundle 'snipMate'
 ——————
     *Let's enjoy vim! :smiley:
 ——————
+     
