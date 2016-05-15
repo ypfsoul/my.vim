@@ -29,7 +29,7 @@ Configuration of ypf's vim
     位置在~/.vimrc
 
 * **.vimrc配置简介**
-```bash
+```vim
 " vundle {
 set rtp+=~/.vim/bundle/vundle/
 " 如果在windows下使用的话，设置为
