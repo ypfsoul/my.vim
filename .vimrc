@@ -3,7 +3,7 @@ filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
-"Let vundle manage vundle, required
+"Let vundle manage bundle, required
 Bundle 'gmarik/vundle'
 "My bundles here:
 Bundle 'altercation/vim-colors-solarized'
@@ -12,6 +12,8 @@ Bundle 'THe-NERD-tree'
 Bundle 'a.vim'
 Bundle 'wincent/command-t'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'Valloric/YouCompleteMe'
+
 
 "Brief help of vundle
 	"BundleList
@@ -75,6 +77,8 @@ set fileformats=unix,dos,mac
 filetype plugin on
 filetype indent on
 
+
+
 "Text search and replace
 set showmatch
 set matchtime=2
@@ -88,6 +92,58 @@ set nowrapscan
 set nowrapscan
 set iskeyword+=_,$,@,%,#,-,.
 
+" 文本格式和排版
+set formatoptions=tcrqn 	" 自动格式化
+
+" 搜索和匹配
+set showmatch 			" 高亮显示匹配的括号
+set matchtime=5 		" 匹配括号高亮的时间（单位是十分之一秒
+set scrolloff=10  		" 光标移动到buffer的顶部和底部时保持10行距离
+set hlsearch 			" 高亮搜索
+set incsearch 			" 边输入边查找
+set ignorecase 			" 在搜索的时候忽略大小写
+
+" 一般设置
+set viminfo+=! 			" 保存全局变量
+set history=300 		" history文件中需要记录的行数
+set nocompatible 		" 不要使用vi的键盘模式，而是vim自己的
+set foldmethod=syntax
+set foldlevel=100  		" 启动vim时不要自动折叠代码
+filetype on 			" 侦测文件类型 
+syntax on 			" 语法高亮
+set magic 			" 设置正表达式
+
+
+
+" taglist 
+let Tlist_Use_Right_Window = 1 		" 在左侧显示窗口
+let Tlist_Compart_Format = 1 		" 压缩方式
+let Tlist_Exist_OnlyWindow = 1 		" 如果只有一个buffer，kill窗口也kill掉buffer
+let Tlist_File_Fold_Auto_Close = 0 	" 不要关闭其他文件的tags
+let Tlist_Enable_Fold_Column = 0 	" 不要显示折叠树 (鼠标可以点开)
+let Tlist_WinWidth = 25                 " taglist窗口宽度
+"标签列表窗口显示或隐藏不影响整个gvim窗口大小
+let Tlist_Inc_Winwidth = 0
+"设置tablist插件只显示当前编辑文件的tag内容，而非当前所有打开文件的tag内容
+let Tlist_Show_One_File=1
+
+
+" netrw
+let NERDTreeWinPos = 'left'
+let g:netrw_winsize = 35
+
+
+" winmanager
+let g:winManagerWindowLayout='NERDTree|BufExplorer'
+let g:winManagerWidth = 25
+let g:defaultExplorer = 0
+nmap wm :WMToggle<cr>
+nmap <C-W><C-F> :FirstExplorerWindow<cr>
+nmap <C-W><C-B> :BottomExplorerWindow<cr>
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
+
+
+
 "Gvim config
 if has("gui_running")
 	colorscheme solarized
@@ -100,11 +156,101 @@ set guifont=PowerlineSymbols\ for\ Powerline
 set nocompatible
 set t_Co=256
 let g:Powerline_symbols = 'fancy'
-"
-"Use taglist to view the linux kernel source
-""Must set tags file path
-set tags=/usr/src/linux-source-4.4.0/tags
 
 
+"YouCompleteMe
+let g:syntastic_ignore_files=[".*\.py$"]
+let g:syntastic_error_symbol = 'X'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_cpp_include_dirs = ['usr/include/']
+let g:syntastic_remove_include_errors = 1
+let g:syntastic_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+let g:syntastic_enable_balloons = 1
+
+let g:ycm_collect_identifiers_from_tags_files = 1  
+let g:ycm_collect_identifiers_from_comments_and_strings = 1  
+let g:ycm_seed_identifiers_with_syntax = 1  
+let g:ycm_complete_in_comments = 1  
+let g:ycm_confirm_extra_conf = 0  
+let g:ycm_global_ycm_extra_conf='/usr/lib/ycmd/ycm_extra_conf.py'
+let g:ycm_server_log_level = 'info'
+nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
+set completeopt=longest
 
 
+" for ctags  
+"set tags=/usr/src/linux-source-4.4.0/tags
+set tags+=~/.vim/systags  
+set tags+=~/.vim/x86_64-linux-gnu-systags
+set tags+=~/.vim/cocos2d.cocos
+set tags+=~/.vim/cocos2d.cocos.2d
+set tags+=~/.vim/cocos2d.cocos.3d
+set tags+=~/.vim/cocos2d.cocos.audio
+set tags+=~/.vim/cocos2d.cocos.audio.linux
+set tags+=~/.vim/cocos2d.cocos.base
+set tags+=~/.vim/cocos2d.cocos.base.allocator.linux
+set tags+=~/.vim/cocos2d.cocos.deprecated
+set tags+=~/.vim/cocos2d.cocos.editor-support.cocosbuilder
+set tags+=~/.vim/cocos2d.cocos.editor-support.cocostudio
+set tags+=~/.vim/cocos2d.cocos.editor-support.cocostudio.ActionTimeline
+set tags+=~/.vim/cocos2d.cocos.editor-support.cocostudio.WidgetReader
+set tags+=~/.vim/cocos2d.cocos.editor-support.spine
+set tags+=~/.vim/cocos2d.cocos.math
+set tags+=~/.vim/cocos2d.cocos.navmesh
+set tags+=~/.vim/cocos2d.cocos.network
+set tags+=~/.vim/cocos2d.cocos.physics
+set tags+=~/.vim/cocos2d.cocos.physics3d
+set tags+=~/.vim/cocos2d.cocos.platform
+set tags+=~/.vim/cocos2d.cocos.platform.linux
+set tags+=~/.vim/cocos2d.cocos.renderer
+set tags+=~/.vim/cocos2d.cocos.storage.local-storage
+set tags+=~/.vim/cocos2d.cocos.ui
+set tags+=~/.vim/cocos2d.cocos.ui.UIEditBox
+set tags+=~/.vim/MyCppGame.Classes
+
+
+"NERD Tree
+"How can I open a NERDTree automatically when vim starts up?
+autocmd VimEnter * NERDTree
+"How can I open a NERDTree automatically when vim starts up if no files were
+"specified?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"How can I map a specific key or shortcut to open NERDTree?
+map <C-l> :NERDTreeToggle<CR>
+"How can I close vim if the only window left open is a NERDTree?
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+" 当打开 NERDTree 窗口时，自动显示 Bookmarks
+let NERDTreeShowBookmarks=1
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+     exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+      exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  endfunction
+
+  call NERDTreeHighlightFile('cpp', 'green', 'none', 'green', '#151515')
+  call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+  call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+  call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+  call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+  call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+  call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+  call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+  call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+  call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+  call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+  call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+  call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+
+"command-t
+nnoremap <silent> <Leader>t <Plug>(CommandT)
+nnoremap <silent> <Leader>b <Plug>(CommandTBuffer)
+nnoremap <silent> <Leader>j <Plug>(CommandTJump)
