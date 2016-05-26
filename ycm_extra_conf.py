@@ -35,17 +35,23 @@ import ycm_core
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
-'-Wall',
-'-Wextra',
-'-Werror',
-'-Wc++98-compat',
+#'-Wall',
+#'-Wextra',
+'-Weverything',
+'-Wno-disabled-macro-expansion',
+'-Wno-float-equal',
+'-Wno-c++98-compat',
+'-Wno-global-constructors',
+'-Wno-exit-time-destructors',
+'-Wno-missing-prototypes',
+'-Wno-padded',
+#'-Werror',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
-'-DNDEBUG',
 # You 100% do NOT need -DUSE_CLANG_COMPLETER in your flags; only the YCM
 # source code needs it.
-'-DUSE_CLANG_COMPLETER',
+#'-DUSE_CLANG_COMPLETER',
 # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
 # language to use when compiling headers. So it will guess. Badly. So C++
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
@@ -59,38 +65,60 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-'-isystem',
-'../BoostParts',
-'-isystem',
 # This path will only work on OS X, but extra paths that don't exist are not
 # harmful
-'/System/Library/Frameworks/Python.framework/Headers',
-'-isystem',
-'../llvm/include',
-'-isystem',
-'../llvm/tools/clang/include',
+
+'-stdlib=libc++',
+
 '-I',
-'.',
+'/usr/include/c++/5.3.1',
 '-I',
-'./ClangCompleter',
-'-isystem',
-'./tests/gmock/gtest',
-'-isystem',
-'./tests/gmock/gtest/include',
-'-isystem',
-'./tests/gmock',
-'-isystem',
-'./tests/gmock/include',
-'-isystem',
-'/usr/include',
-'-isystem',
-'/usr/local/include',
-'-isystem',
-'/home/liyihai/es/qt4.8.3_arm/include/QtGui',
-'-isystem',
-'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
-'-isystem',
-'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+'/usr/include/x86_64-linux-gnu/c++/5.3.1',
+'-I',
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/Classes',
+'-I',
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/2d',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/3d',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/base/allocator',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/base',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/math',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/navmesh',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/network',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/physics',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/physics3d',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/platform',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/platform/linux',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/renderer',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/storage/local-storage',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/ui',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/ui/UIEditBox',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/audio',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/audio/linux',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/editor-support/cocosbuilder',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/editor-support/cocostudio',
+'-I', 
+'/home/ypf/workspace/cocos2dx/cocos2d-x-3.11-project/MyCppGame/cocos2d/cocos/editor-support/spine',
+
 ]
 
 
@@ -104,6 +132,8 @@ flags = [
 #
 # Most projects will NOT need to set this to anything; you can just change the
 # 'flags' list of compilation flags. Notice that YCM itself uses that approach.
+#compilation_database_folder = 'MyCppGame'
+
 compilation_database_folder = ''
 
 if os.path.exists( compilation_database_folder ):
@@ -184,10 +214,10 @@ def FlagsForFile( filename, **kwargs ):
     # NOTE: This is just for YouCompleteMe; it's highly likely that your project
     # does NOT need to remove the stdlib flag. DO NOT USE THIS IN YOUR
     # ycm_extra_conf IF YOU'RE NOT 100% SURE YOU NEED IT.
-    try:
-      final_flags.remove( '-stdlib=libc++' )
-    except ValueError:
-      pass
+#    try:
+#      final_flags.remove( '-stdlib=libc++' )
+#    except ValueError:
+#     pass
   else:
     relative_to = DirectoryOfThisScript()
     final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )

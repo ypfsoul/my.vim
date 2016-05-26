@@ -68,7 +68,7 @@ set shortmess=atI
 
 "syntax and theme
 syntax on
-colorscheme desert
+"colorscheme desert
 set background=dark 
 set cursorline
 set cursorcolumn
@@ -384,7 +384,7 @@ nnoremap <Leader>sp :CtrlSF<CR>
 map <F5> :!rm -rf main<CR>:wa<CR>:make<CR>:cw<CR><CR>:!./main<CR>
 
 "一键退出vim
-nnoremap <Leader>q :wqa<CR>
+nnoremap <Leader>q :wqa!<CR>
 
 "永久保留undo
 set undofile
