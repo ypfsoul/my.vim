@@ -21,6 +21,8 @@ Bundle 'kshenoy/vim-signature'
 Bundle 'majutsushi/tagbar'
 Bundle 'rking/ag.vim'
 Bundle 'dyng/ctrlsf.vim'
+Bundle 'tpope/vim-commentary'
+Bundle 'scrooloose/nerdcommenter'
 
 "Brief help of vundle
 	"BundleList
@@ -285,7 +287,7 @@ map <silent> -9 :CommandTBuffer<CR>
 map <silent> -0 :CommandTJump<CR>
 
 "主题配色
-colorscheme molokai
+colorscheme railscasts
 "let g:rehash256 = 1
 
 
@@ -390,4 +392,7 @@ nnoremap <Leader>q :wqa!<CR>
 set undofile
 
 "GDB
-map <F2> :run macros/gdb_mappings.vim<CR>
+map <F3> :run macros/gdb_mappings.vim<CR>
+
+"vim-commentary
+autocmd FileType c++,c setlocal commentstring=/\/\%s
