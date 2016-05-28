@@ -23,13 +23,16 @@ Bundle 'rking/ag.vim'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'WolfgangMehner/vim-plugins'
+Bundle 'Chiel92/vim-autoformat'
+Bundle 'Raimondi/delimitMate'
 
 "Brief help of vundle
-	"BundleList
-	"BundleInstall
-	"BundleSearch
-	"BundleClean
-	"help vundle
+"BundleList
+"BundleInstall
+"BundleSearch
+"BundleClean
+"help vundle
 "End brief help
 
 "设置leader
@@ -69,9 +72,6 @@ set t_vb=
 set shortmess=atI
 
 "syntax and theme
-syntax on
-"colorscheme desert
-set background=dark 
 set cursorline
 set cursorcolumn
 
@@ -114,26 +114,26 @@ set nowrapscan
 set iskeyword+=_,$,@,%,#,-,.
 
 " 文本格式和排版
-set formatoptions=tcrqn 	" 自动格式化
+set formatoptions=tcrqn     " 自动格式化
 
 " 搜索和匹配
-set showmatch 			" 高亮显示匹配的括号
+set showmatch           " 高亮显示匹配的括号
 
-set scrolloff=10  		" 光标移动到buffer的顶部和底部时保持10行距离
-set hlsearch 			" 高亮搜索
-set incsearch 			" 边输入边查找
-set ignorecase 			" 在搜索的时候忽略大小写
+set scrolloff=10        " 光标移动到buffer的顶部和底部时保持10行距离
+set hlsearch            " 高亮搜索
+set incsearch           " 边输入边查找
+set ignorecase          " 在搜索的时候忽略大小写
 
 " 一般设置
-set viminfo+=! 			" 保存全局变量
-set history=300 		" history文件中需要记录的行数
-set nocompatible 		" 不要使用vi的键盘模式，而是vim自己的
+set viminfo+=!          " 保存全局变量
+set history=300         " history文件中需要记录的行数
+set nocompatible        " 不要使用vi的键盘模式，而是vim自己的
 set foldmethod=syntax
-set foldlevel=100  		" 启动vim时不要自动折叠代码
-filetype on 			" 侦测文件类型 
-syntax on 			" 语法高亮
+set foldlevel=100       " 启动vim时不要自动折叠代码
+filetype on             " 侦测文件类型
+syntax on           " 语法高亮
 filetype plugin on  "根据侦测到不同的文件类型，加载不同插件
-set magic 			" 设置正表达式
+set magic           " 设置正表达式
 
 set nocompatible    "关闭兼容模式
 set wildmenu        "vim对自身命令模式智能补全
@@ -141,12 +141,12 @@ set wildmenu        "vim对自身命令模式智能补全
 "set nowrap          "禁止折行
 
 filetype plugin on  "根据侦测到不同的文件类型，加载不同插件
-" taglist 
-let Tlist_Use_Right_Window = 1 		" 在左侧显示窗口
-let Tlist_Compart_Format = 1 		" 压缩方式
-let Tlist_Exist_OnlyWindow = 1 		" 如果只有一个buffer，kill窗口也kill掉buffer
-let Tlist_File_Fold_Auto_Close = 0 	" 不要关闭其他文件的tags
-let Tlist_Enable_Fold_Column = 0 	" 不要显示折叠树 (鼠标可以点开)
+" taglist
+let Tlist_Use_Right_Window = 1      " 在左侧显示窗口
+let Tlist_Compart_Format = 1        " 压缩方式
+let Tlist_Exist_OnlyWindow = 1      " 如果只有一个buffer，kill窗口也kill掉buffer
+let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags
+let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树 (鼠标可以点开)
 let Tlist_WinWidth = 25                 " taglist窗口宽度
 "标签列表窗口显示或隐藏不影响整个gvim窗口大小
 let Tlist_Inc_Winwidth = 0
@@ -173,7 +173,7 @@ autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
 "Gvim config
 if has("gui_running")
-	colorscheme solarized
+    colorscheme solarized
 endif
 set guifont=DejaVu\ Sans\ Mono\ 15
 set guioptions=aegic
@@ -198,11 +198,11 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 let g:syntastic_enable_balloons = 1
 
-let g:ycm_collect_identifiers_from_tags_files = 1  
-let g:ycm_collect_identifiers_from_comments_and_strings = 1  
-let g:ycm_seed_identifiers_with_syntax = 1  
-let g:ycm_complete_in_comments = 1  
-let g:ycm_confirm_extra_conf = 0  
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf='/usr/lib/ycmd/ycm_extra_conf.py'
 let g:ycm_server_log_level = 'info'
 
@@ -211,10 +211,10 @@ nnoremap <leader>je :YcmCompleter GoToDefinition<CR>
 set completeopt=longest
 
 
-" for ctags  
+" for ctags
 "set tags=/usr/src/linux-source-4.4.0/tags
 set tags=~/.vim/c++5.3.1
-"set tags+=~/.vim/systags  
+"set tags+=~/.vim/systags
 "set tags+=~/.vim/x86_64-linux-gnu-systags
 set tags+=~/.vim/cocos2d.cocos.platform.desktop
 set tags+=~/.vim/cocos2d.cocos
@@ -262,23 +262,23 @@ let NERDTreeShowBookmarks=1
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-     exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-      exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-  endfunction
+    exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
 
-  call NERDTreeHighlightFile('cpp', 'green', 'none', 'green', '#151515')
-  call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-  call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-  call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-  call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-  call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-  call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-  call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-  call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-  call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-  call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-  call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-  call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('cpp', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 
 "command-t
@@ -289,7 +289,11 @@ map <silent> -0 :CommandTJump<CR>
 "主题配色
 colorscheme railscasts
 "let g:rehash256 = 1
-
+syntax enable
+syntax on
+set background=dark
+"colorscheme solarized
+let g:solarized_termcolors=256
 
 "vim-indent-guides
 let g:indent_gudie_enable_on_vim_startup=1
@@ -307,28 +311,28 @@ nmap <Leader>sch :AS<CR>
 
 "vim-signature
 let g:SignatureMap = {
-  \ 'Leader'         :  "m",
-  \ 'PlaceNextMark'      :  "m,",
-  \ 'ToggleMarkAtLine'   :  "m.",
-  \ 'PurgeMarksAtLine'   :  "m-",
-  \ 'DeleteMark'     :  "dm",
-  \ 'PurgeMarks'     :  "mda",
-  \ 'PurgeMarkers'       :  "m<BS>",
-  \ 'GotoNextLineAlpha'  :  "']",
-  \ 'GotoPrevLineAlpha'  :  "'[",
-  \ 'GotoNextSpotAlpha'  :  "`]",
-  \ 'GotoPrevSpotAlpha'  :  "`[",
-  \ 'GotoNextLineByPos'  :  "]'",
-  \ 'GotoPrevLineByPos'  :  "['",
-  \ 'GotoNextSpotByPos'  :  "mn",
-  \ 'GotoPrevSpotByPos'  :  "mp",
-  \ 'GotoNextMarker'     :  "[+",
-  \ 'GotoPrevMarker'     :  "[-",
-  \ 'GotoNextMarkerAny'  :  "]=",
-  \ 'GotoPrevMarkerAny'  :  "[=",
-  \ 'ListLocalMarks'     :  "ms",
-  \ 'ListLocalMarkers'   :  "m?"
-  \ }
+            \ 'Leader'         :  "m",
+            \ 'PlaceNextMark'      :  "m,",
+            \ 'ToggleMarkAtLine'   :  "m.",
+            \ 'PurgeMarksAtLine'   :  "m-",
+            \ 'DeleteMark'     :  "dm",
+            \ 'PurgeMarks'     :  "mda",
+            \ 'PurgeMarkers'       :  "m<BS>",
+            \ 'GotoNextLineAlpha'  :  "']",
+            \ 'GotoPrevLineAlpha'  :  "'[",
+            \ 'GotoNextSpotAlpha'  :  "`]",
+            \ 'GotoPrevSpotAlpha'  :  "`[",
+            \ 'GotoNextLineByPos'  :  "]'",
+            \ 'GotoPrevLineByPos'  :  "['",
+            \ 'GotoNextSpotByPos'  :  "mn",
+            \ 'GotoPrevSpotByPos'  :  "mp",
+            \ 'GotoNextMarker'     :  "[+",
+            \ 'GotoPrevMarker'     :  "[-",
+            \ 'GotoNextMarkerAny'  :  "]=",
+            \ 'GotoPrevMarkerAny'  :  "[=",
+            \ 'ListLocalMarks'     :  "ms",
+            \ 'ListLocalMarkers'   :  "m?"
+            \ }
 
 "子窗口的位置出现在主编辑区的右边
 let tagbar_right=1
@@ -340,37 +344,37 @@ let tagbar_width=32
 let g:tagbar_compact=1
 " 设置 ctags 对哪些代码元素生成标签
 let g:tagbar_type_cpp = {
-  \ 'kinds' : [
-    \ 'd:macros:1',
-    \ 'g:enums',
-    \ 't:typedefs:0:0',
-    \ 'e:enumerators:0:0',
-    \ 'n:namespaces',
-    \ 'c:classes',
-    \ 's:structs',
-    \ 'u:unions',
-    \ 'f:functions',
-    \ 'm:members:0:0',
-    \ 'v:global:0:0',
-    \ 'x:external:0:0',
-    \ 'l:local:0:0'
-   \ ],
-   \ 'sro'      : '::',
-   \ 'kind2scope' : {
-     \ 'g' : 'enum',
-     \ 'n' : 'namespace',
-     \ 'c' : 'class',
-     \ 's' : 'struct',
-     \ 'u' : 'union'
-   \ },
-   \ 'scope2kind' : {
-     \ 'enum'     : 'g',
-     \ 'namespace' : 'n',
-     \ 'class'   : 'c',
-     \ 'struct' : 's',
-     \ 'union'   : 'u'
-   \ }
-   \ }
+            \ 'kinds' : [
+            \ 'd:macros:1',
+            \ 'g:enums',
+            \ 't:typedefs:0:0',
+            \ 'e:enumerators:0:0',
+            \ 'n:namespaces',
+            \ 'c:classes',
+            \ 's:structs',
+            \ 'u:unions',
+            \ 'f:functions',
+            \ 'm:members:0:0',
+            \ 'v:global:0:0',
+            \ 'x:external:0:0',
+            \ 'l:local:0:0'
+            \ ],
+            \ 'sro'      : '::',
+            \ 'kind2scope' : {
+            \ 'g' : 'enum',
+            \ 'n' : 'namespace',
+            \ 'c' : 'class',
+            \ 's' : 'struct',
+            \ 'u' : 'union'
+            \ },
+            \ 'scope2kind' : {
+            \ 'enum'     : 'g',
+            \ 'namespace' : 'n',
+            \ 'class'   : 'c',
+            \ 'struct' : 's',
+            \ 'union'   : 'u'
+            \ }
+            \ }
 
 "ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -392,7 +396,24 @@ nnoremap <Leader>q :wqa!<CR>
 set undofile
 
 "GDB
-map <F3> :run macros/gdb_mappings.vim<CR>
+let g:vimgdb_debug_file = ""
+run macros/gdb_mappings.vim
+
 
 "vim-commentary
 autocmd FileType c++,c setlocal commentstring=/\/\%s
+
+"c-support
+let g:C_MapLeader=','
+
+"delimitmate括号补全
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+
+"vim-autoformat
+noremap <F3> :Autoformat<CR>
+au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+let g:formatdef_clangformat = "'clang-format -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=\"{BasedOnStyle: WebKit, BreakBeforeBraces: Allman, AllowShortIfStatementsOnASingleLine: false,AlignTrailingComments: true, '.(&textwidth ? 'ColumnLimit: '.&textwidth.', ' : '').(&expandtab ? 'UseTab: Never, IndentWidth: '.shiftwidth() : 'UseTab: Always').'}\"'"
