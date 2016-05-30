@@ -14,7 +14,6 @@ Bundle 'a.vim'
 Bundle 'wincent/command-t'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
 Bundle 'Mizuchi/STL-Syntax'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'kshenoy/vim-signature'
@@ -26,6 +25,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'WolfgangMehner/vim-plugins'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-fugitive'
 
 "Brief help of vundle
 "BundleList
@@ -416,4 +416,4 @@ au BufWrite * :Autoformat
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
-let g:formatdef_clangformat = "'clang-format -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=\"{BasedOnStyle: WebKit, BreakBeforeBraces: Allman, AllowShortIfStatementsOnASingleLine: false,AlignTrailingComments: true, '.(&textwidth ? 'ColumnLimit: '.&textwidth.', ' : '').(&expandtab ? 'UseTab: Never, IndentWidth: '.shiftwidth() : 'UseTab: Always').'}\"'"
+let g:formatdef_clangformat = "'clang-format -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=\"{BasedOnStyle: WebKit, BreakBeforeBraces: Allman, KeepEmptyLinesAtTheStartOfBlocks: true, MaxEmptyLinesToKeep: 65535, AllowShortIfStatementsOnASingleLine: false,AlignTrailingComments: true, '.(&textwidth ? 'ColumnLimit: '.&textwidth.', ' : '').(&expandtab ? 'UseTab: Never, IndentWidth: '.shiftwidth() : 'UseTab: Always').'}\"'"
