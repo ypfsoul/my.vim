@@ -26,6 +26,10 @@ Bundle 'WolfgangMehner/vim-plugins'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-fugitive'
+Bundle 'derekwyatt/vim-fswitch'
+Bundle 'derekwyatt/vim-protodef'
+Bundle 'gcmt/wildfire.vim'
+Bundle 'fholgado/minibufexpl.vim'
 
 "Brief help of vundle
 "BundleList
@@ -198,6 +202,11 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 let g:syntastic_enable_balloons = 1
 
+" YCM 补全菜单配色
+" 菜单
+highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+" 选中项
+highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -205,17 +214,31 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf='/usr/lib/ycmd/ycm_extra_conf.py'
 let g:ycm_server_log_level = 'info'
+" 补全功能在注释中同样有效
+let g:ycm_complete_in_comments=1
+" 补全内容不以分割子窗口形式出现，只显示补全列表
+set completeopt-=preview
+" 从第一个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion=1
+" 禁止缓存匹配项，每次都重新生成匹配项
+let g:ycm_cache_omnifunc=0
+
 
 nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>jj :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>je :YcmCompleter GoToDefinition<CR>
 set completeopt=longest
 
 
 " for ctags
+"正向遍历同名标签
+nmap <Leader>tn :tnext<CR>
+"反向遍历同名标签
+nmap <Leader>tp :tprevious<CR>
 "set tags=/usr/src/linux-source-4.4.0/tags
 set tags=~/.vim/c++5.3.1
-"set tags+=~/.vim/systags
-"set tags+=~/.vim/x86_64-linux-gnu-systags
+set tags+=~/.vim/systags
+set tags+=~/.vim/x86_64-linux-gnu-systags
 set tags+=~/.vim/cocos2d.cocos.platform.desktop
 set tags+=~/.vim/cocos2d.cocos
 set tags+=~/.vim/cocos2d.cocos.2d
@@ -304,6 +327,7 @@ let g:indent_guides_guide_size=1
 " 快捷键 i 开/关缩进可视化
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
+"a.vim
 " *.cpp 和 *.h 间切换
 nmap <Leader>ch :A<CR>
 " 子窗口中显示 *.cpp 或 *.h
@@ -342,17 +366,17 @@ nnoremap <Leader>tl :TagbarToggle<CR>
 let tagbar_width=32
 " tagbar 子窗口中不显示冗余帮助信息
 let g:tagbar_compact=1
-" 设置 ctags 对哪些代码元素生成标签
+" 设置 csShortertags 对哪些代码元素生成标签
 let g:tagbar_type_cpp = {
-            \ 'kinds' : [
-            \ 'd:macros:1',
-            \ 'g:enums',
-            \ 't:typedefs:0:0',
-            \ 'e:enumerators:0:0',
-            \ 'n:namespaces',
-            \ 'c:classes',
-            \ 's:structs',
-            \ 'u:unions',
+        \ 'kinds' : [
+        \ 'd:macros:1',
+        \ 'g:enums',
+        \ 't:typedefs:0:0',
+        \ 'e:enumerators:0:0',
+        \ 'n:namespaces',
+        \ 'c:classes',
+        \ 's:structs',
+        \ 'u:unions',
             \ 'f:functions',
             \ 'm:members:0:0',
             \ 'v:global:0:0',
@@ -377,6 +401,7 @@ let g:tagbar_type_cpp = {
             \ }
 
 "ag
+set runtimepath^=~/.vim/bundle/ag.vim"
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "ctrlsf
@@ -417,3 +442,67 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 let g:formatdef_clangformat = "'clang-format -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=\"{BasedOnStyle: WebKit, BreakBeforeBraces: Allman, KeepEmptyLinesAtTheStartOfBlocks: true, MaxEmptyLinesToKeep: 65535, AllowShortIfStatementsOnASingleLine: false,AlignTrailingComments: true, '.(&textwidth ? 'ColumnLimit: '.&textwidth.', ' : '').(&expandtab ? 'UseTab: Never, IndentWidth: '.shiftwidth() : 'UseTab: Always').'}\"'"
+
+
+"Power-line
+"设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
+
+"protodef
+"fswitch
+" 设置 pullproto.pl 脚本路径
+let g:protodefprotogetter='~/.vim/bundle/vim-protodef/pullproto.pl'
+" 成员函数的实现顺序与声明顺序一致
+let g:disable_protodef_sorting=1
+
+"MiniBuffExplorer
+" 显示/隐藏 MiniBufExplorer 窗口
+map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+map <leader>l :MBEbn<cr>
+map <leader>h :MBEbp<cr>
+
+"wildfire
+" 快捷键
+map <SPACE> <Plug>(wildfire-fuel)
+vmap <SPACE>l  <Plug>(wildfire-water)
+" 适用于哪些结对符
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>", "ip"]
+
+
+
+" 替换函数。参数说明：
+" confirm：是否替换前逐一确认
+" wholeword：是否整词匹配
+" replace：被替换字符串
+
+
+
+function! Replace(confirm, wholeword, replace)
+wa
+let flag = ''
+if a:confirm
+let flag .= 'gec'
+else
+let flag .= 'ge'
+endif
+let search = ''
+if a:wholeword
+let search .= '\<' . escape(expand('<cword>'), '/\.*$^~[') . '\>'
+else
+let search .= expand('<cword>')
+endif
+let replace = escape(a:replace, '/\&~')
+execute 'args ./**/*.c ./**/*.h ./**/*.cpp'
+execute 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+endfunction
+
+" 不确认、非整词
+nnoremap <Leader>R :call Replace(0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+" 不确认、整词
+nnoremap <Leader>rw :call Replace(0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+" 确认、非整词
+nnoremap <Leader>rc :call Replace(1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+" 确认、整词
+nnoremap <Leader>rcw :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+nnoremap <Leader>rwc :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
