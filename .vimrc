@@ -1,8 +1,48 @@
-"use vundle to manage plugin, required turn file type off and nocompatible
-filetype off
+" VIM Configuration File
+
 set nocompatible
-set rtp+=~/.vim/bundle/vundle
+filetype off
+
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname')=~'Darwin'
+      return "mac"
+    else
+      return "linux"
+    endif
+  endif
+endfunction
+
+let os = GetRunningOS()
+
+if os=="win"
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set encoding=utf-8
+language messages zh_CN.UTF-8
+set fileencoding=chinese
+"解决菜单乱码
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+endif
+
+
+"Let Vundle manage Vbundle{{{
+if os == "mac" || os == "linux"
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+endif
+
+if os == "win"
+set rtp+=~/my.vim/bundle/vundle/
+let path='~/my.vim/bundle'
+call vundle#rc(path)
+endif
+"}}}
+
+filetype plugin indent on
 
 "Let vundle manage bundle, required
 Bundle 'gmarik/vundle'
@@ -146,6 +186,7 @@ set wildmenu        "vim对自身命令模式智能补全
 
 filetype plugin on  "根据侦测到不同的文件类型，加载不同插件
 " taglist
+let Tlist_Ctags_Cmd = 'd:\tools\ctags.exe'
 let Tlist_Use_Right_Window = 1      " 在左侧显示窗口
 let Tlist_Compart_Format = 1        " 压缩方式
 let Tlist_Exist_OnlyWindow = 1      " 如果只有一个buffer，kill窗口也kill掉buffer
@@ -310,7 +351,7 @@ map <silent> -9 :CommandTBuffer<CR>
 map <silent> -0 :CommandTJump<CR>
 
 "主题配色
-colorscheme railscasts
+colorscheme solarized
 "let g:rehash256 = 1
 syntax enable
 syntax on
